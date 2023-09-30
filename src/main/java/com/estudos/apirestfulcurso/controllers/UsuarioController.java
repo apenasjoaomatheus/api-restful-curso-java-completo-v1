@@ -1,22 +1,35 @@
 package com.estudos.apirestfulcurso.controllers;
 
 import com.estudos.apirestfulcurso.entidades.Usuario;
+import com.estudos.apirestfulcurso.services.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
 @CrossOrigin
 public class UsuarioController {
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @GetMapping("/todos")
-    public ResponseEntity<Usuario> findAll() {
+    public ResponseEntity<List<Usuario>> findAll() {
 
-        Usuario u = new Usuario(1L, "teste", "teste@gmail.com","181938193", "131231312");
+        List<Usuario> usuarios = usuarioService.listar();
+        return ResponseEntity.ok().body(usuarios);
+    }
 
-        return ResponseEntity.ok().body(u);
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Usuario> buscarPeloId(@PathVariable Long id) {
+
+        Usuario usuario = usuarioService.buscarPeloID(id);
+
+        return ResponseEntity.ok().body(usuario);
+
     }
 }
