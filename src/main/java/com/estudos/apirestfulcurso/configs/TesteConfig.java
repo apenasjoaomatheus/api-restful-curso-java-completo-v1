@@ -2,6 +2,7 @@ package com.estudos.apirestfulcurso.configs;
 
 import com.estudos.apirestfulcurso.entidades.Pedido;
 import com.estudos.apirestfulcurso.entidades.Usuario;
+import com.estudos.apirestfulcurso.repositories.PedidoRepository;
 import com.estudos.apirestfulcurso.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,6 +20,9 @@ public class TesteConfig implements CommandLineRunner {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private PedidoRepository pedidoRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -32,5 +36,7 @@ public class TesteConfig implements CommandLineRunner {
         Pedido o3 = new Pedido(null, Instant.parse("2019-07-22T15:21:22Z"), u1);
 
         usuarioRepository.saveAll(Arrays.asList(u1, u2));
+        pedidoRepository.saveAll(Arrays.asList(o1,o2,o3));
+
     }
 }

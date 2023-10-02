@@ -25,4 +25,11 @@ public class UsuarioService {
 
         return usuario.get();
     }
+
+
+    public Usuario salvarUsuario(Usuario u) {
+
+        return repository.save(u);
+
+    }
 }

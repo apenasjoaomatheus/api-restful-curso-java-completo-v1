@@ -1,6 +1,7 @@
 package com.estudos.apirestfulcurso.entidades;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,19 +24,20 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome")
+
     private String nome;
 
-    @Column(name = "email")
+
     private String email;
 
-    @Column(name = "telefone")
+
     private String telefone;
 
-    @Column(name = "senha")
+
     private String senha;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 

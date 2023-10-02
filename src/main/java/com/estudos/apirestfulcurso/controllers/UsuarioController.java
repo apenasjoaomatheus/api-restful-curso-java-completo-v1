@@ -32,4 +32,15 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuario);
 
     }
+
+    @PostMapping("/salvar")
+    public ResponseEntity<Usuario> salvarUsuario(@RequestBody Usuario usuario) {
+
+        System.out.println("chegando");
+
+        usuario = usuarioService.salvarUsuario(usuario);
+
+        return ResponseEntity.ok().body(usuario);
+
+    }
 }
